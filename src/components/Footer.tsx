@@ -1,4 +1,4 @@
-import { Github, Facebook, Mail, Heart } from "lucide-react";
+import { Github, Facebook, Mail, kidney} from "lucide-react";
 
 const Footer = () => {
   return (
@@ -31,7 +31,7 @@ const Footer = () => {
           </div>
           
           <p className="font-mono text-sm text-muted-foreground flex items-center gap-1">
-            Built with <Heart className="w-4 h-4 text-primary" /> by{" "}
+            Built with <kidney className="w-4 h-4 text-primary" /> by{" "}
             <span className="text-foreground">Sonima Pokharel</span>
           </p>
           
