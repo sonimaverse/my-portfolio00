@@ -27,7 +27,7 @@ const skills = [
 
 const otherSkills = ["Git", "React", "Node.js", "Python", "SQL", "REST APIs", "Linux", "Problem Solving"];
 
-const Skills = () => {
+const Skills: React.FC = () => {
   return (
     <section id="skills" className="py-24 bg-card/50">
       <div className="container mx-auto px-6">
@@ -44,7 +44,7 @@ const Skills = () => {
             {skills.map((skill, index) => (
               <div
                 key={index}
-                className="p-6 bg-background border border-border rounded-lg hover-glow transition-all"
+                className="p-6 bg-background border border-border rounded-lg hover:shadow-lg hover:border-primary transition-all duration-300"
               >
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
@@ -53,13 +53,13 @@ const Skills = () => {
                   </div>
                   <span className="font-mono text-primary">{skill.level}%</span>
                 </div>
-                
+
                 <p className="text-sm text-muted-foreground mb-4">{skill.description}</p>
-                
+
                 {/* Progress Bar */}
                 <div className="h-2 bg-muted rounded-full overflow-hidden">
                   <div
-                    className="h-full skill-bar rounded-full transition-all duration-1000 ease-out"
+                    className="h-full bg-primary rounded-full transition-all duration-1000 ease-out"
                     style={{ width: `${skill.level}%` }}
                   />
                 </div>

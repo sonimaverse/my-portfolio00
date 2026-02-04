@@ -45,7 +45,7 @@ const otherProjects = [
   },
 ];
 
-const Projects = () => {
+const Projects: React.FC = () => {
   return (
     <section id="projects" className="py-24">
       <div className="container mx-auto px-6">
@@ -62,17 +62,15 @@ const Projects = () => {
             {featuredProjects.map((project, index) => (
               <div
                 key={index}
-                className="group relative bg-card border border-border rounded-lg p-8 hover-glow transition-all"
+                className="group relative bg-card border border-border rounded-lg p-8 hover:shadow-lg hover:border-primary transition-all duration-300"
               >
                 <div className="flex flex-col md:flex-row md:items-start gap-6">
                   <div className="flex-1">
                     <span className="font-mono text-primary text-sm">Featured Project</span>
-                    <h3 className="text-xl font-bold mt-2 mb-4 group-hover:text-primary transition-colors">
+                    <h3 className="text-xl font-bold mt-2 mb-4 group-hover:text-primary transition-colors duration-300">
                       {project.title}
                     </h3>
-                    <p className="text-muted-foreground mb-6 leading-relaxed">
-                      {project.description}
-                    </p>
+                    <p className="text-muted-foreground mb-6 leading-relaxed">{project.description}</p>
                     <div className="flex flex-wrap gap-2 mb-6">
                       {project.tech.map((tech, i) => (
                         <span
@@ -84,20 +82,24 @@ const Projects = () => {
                       ))}
                     </div>
                     <div className="flex items-center gap-4">
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-primary transition-colors"
-                      >
-                        <Github className="w-5 h-5" />
-                      </a>
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-muted-foreground hover:text-primary transition-colors"
+                          aria-label={`${project.title} GitHub`}
+                        >
+                          <Github className="w-5 h-5" />
+                        </a>
+                      )}
                       {project.live && (
                         <a
                           href={project.live}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-muted-foreground hover:text-primary transition-colors"
+                          aria-label={`${project.title} Live Demo`}
                         >
                           <ExternalLink className="w-5 h-5" />
                         </a>
@@ -111,21 +113,21 @@ const Projects = () => {
 
           {/* Other Projects */}
           <h3 className="font-mono text-xl text-center mb-8">Other Noteworthy Projects</h3>
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-3 gap-6">
             {otherProjects.map((project, index) => (
               <div
                 key={index}
-                className="p-6 bg-card border border-border rounded-lg hover-glow transition-all group"
+                className="p-6 bg-card border border-border rounded-lg hover:shadow-md hover:border-primary transition-all duration-300 group"
               >
-                <Folder className="w-10 h-10 text-primary mb-4" />
-                <h4 className="font-semibold mb-2 group-hover:text-primary transition-colors">
+                <Folder className="w-10 h-10 text-primary mb-4 group-hover:scale-110 transition-transform duration-300" />
+                <h4 className="font-semibold mb-2 group-hover:text-primary transition-colors duration-300">
                   {project.title}
                 </h4>
                 <p className="text-sm text-muted-foreground mb-4">{project.description}</p>
                 <div className="flex items-center justify-between">
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 text-xs text-muted-foreground font-mono">
                     {project.tech.map((tech, i) => (
-                      <span key={i} className="font-mono text-xs text-muted-foreground">
+                      <span key={i}>
                         {tech}
                         {i < project.tech.length - 1 && " •"}
                       </span>
@@ -137,6 +139,7 @@ const Projects = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-muted-foreground hover:text-primary transition-colors"
+                      aria-label={`${project.title} GitHub`}
                     >
                       <Github className="w-4 h-4" />
                     </a>

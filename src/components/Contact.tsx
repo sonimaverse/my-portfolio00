@@ -1,8 +1,14 @@
 import { Mail, MapPin, Send } from "lucide-react";
 import { useState } from "react";
 
-const Contact = () => {
-  const [formData, setFormData] = useState({
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+}
+
+const Contact: React.FC = () => {
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     message: "",
@@ -10,9 +16,8 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
     console.log("Form submitted:", formData);
-    // You can add your form submission logic here
+    // Add your API or email logic here
   };
 
   return (
@@ -26,6 +31,7 @@ const Contact = () => {
             <div className="flex-1 h-px bg-border" />
           </div>
 
+          {/* Intro Text */}
           <div className="text-center mb-12">
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               I'm currently looking for new opportunities. Whether you have a question, 
@@ -36,7 +42,7 @@ const Contact = () => {
           <div className="grid md:grid-cols-5 gap-8">
             {/* Contact Info */}
             <div className="md:col-span-2 space-y-6">
-              <div className="flex items-center gap-4 p-4 bg-background border border-border rounded-lg">
+              <div className="flex items-center gap-4 p-4 bg-background border border-border rounded-lg hover:shadow-md transition-shadow">
                 <div className="p-3 bg-primary/10 rounded-lg">
                   <Mail className="w-5 h-5 text-primary" />
                 </div>
@@ -46,7 +52,7 @@ const Contact = () => {
                 </div>
               </div>
               
-              <div className="flex items-center gap-4 p-4 bg-background border border-border rounded-lg">
+              <div className="flex items-center gap-4 p-4 bg-background border border-border rounded-lg hover:shadow-md transition-shadow">
                 <div className="p-3 bg-primary/10 rounded-lg">
                   <MapPin className="w-5 h-5 text-primary" />
                 </div>
@@ -56,7 +62,7 @@ const Contact = () => {
                 </div>
               </div>
 
-              {/* Terminal Style */}
+              {/* Terminal-style Box */}
               <div className="p-4 bg-background border border-border rounded-lg font-mono text-sm">
                 <div className="flex items-center gap-2 mb-2">
                   <div className="w-3 h-3 rounded-full bg-destructive" />
@@ -72,7 +78,10 @@ const Contact = () => {
             {/* Contact Form */}
             <form onSubmit={handleSubmit} className="md:col-span-3 space-y-4">
               <div>
-                <label htmlFor="name" className="block font-mono text-sm mb-2 text-muted-foreground">
+                <label
+                  htmlFor="name"
+                  className="block font-mono text-sm mb-2 text-muted-foreground"
+                >
                   Name
                 </label>
                 <input
@@ -80,14 +89,17 @@ const Contact = () => {
                   id="name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-primary transition-colors font-mono text-sm"
                   placeholder="Your name"
                   required
+                  className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all font-mono text-sm"
                 />
               </div>
               
               <div>
-                <label htmlFor="email" className="block font-mono text-sm mb-2 text-muted-foreground">
+                <label
+                  htmlFor="email"
+                  className="block font-mono text-sm mb-2 text-muted-foreground"
+                >
                   Email
                 </label>
                 <input
@@ -95,14 +107,17 @@ const Contact = () => {
                   id="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-primary transition-colors font-mono text-sm"
                   placeholder="your@email.com"
                   required
+                  className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all font-mono text-sm"
                 />
               </div>
               
               <div>
-                <label htmlFor="message" className="block font-mono text-sm mb-2 text-muted-foreground">
+                <label
+                  htmlFor="message"
+                  className="block font-mono text-sm mb-2 text-muted-foreground"
+                >
                   Message
                 </label>
                 <textarea
@@ -110,9 +125,9 @@ const Contact = () => {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   rows={5}
-                  className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:border-primary transition-colors font-mono text-sm resize-none"
                   placeholder="Your message..."
                   required
+                  className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all font-mono text-sm resize-none"
                 />
               </div>
               
@@ -120,7 +135,7 @@ const Contact = () => {
                 type="submit"
                 className="w-full py-3 bg-primary text-primary-foreground font-mono font-semibold rounded-lg hover:opacity-90 transition-opacity glow-box flex items-center justify-center gap-2"
               >
-                <Send className="w-4 h-4" />
+                <Send className="w-4 h-4 animate-bounce" />
                 Send Message
               </button>
             </form>
